@@ -1,7 +1,8 @@
 import { Route, Routes } from "react-router-dom";
+import CorkBoard from "./assets/CorkBoard.jpg";
 import LandingPage from "./pages/LandingPage";
 import MyProjectsPage from "./pages/MyProjectsPage";
-import CorkBoard from "./assets/CorkBoard.jpg";
+import ProjectDetailPage from "./pages/ProjectDetailPage";
 
 function App() {
   const containerStyle = {
@@ -22,7 +23,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage/>} />
         <Route path="/projects" element={<MyProjectsPage/>} />
-        {/* <Route path="/projects/:projectId" element={<ProjectPage/>} /> */}
+        <Route path="/projects/:projectId" element={<ProjectDetailPage/>} />
       </Routes>
     </div>
   )
