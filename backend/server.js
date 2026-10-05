@@ -18,7 +18,7 @@ app.use(cors({
   origin: process.env.CLIENT_URL
 }))
 app.use(express.static(path.join(__dirname, "public")));
-app.use(express.urlencoded());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(morgan("dev"));
 
