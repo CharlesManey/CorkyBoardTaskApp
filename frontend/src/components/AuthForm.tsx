@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import { login, signUp } from '../services/auth';
+import { useNavigate } from 'react-router-dom';
 
 export default function AuthForm() {
+  const navigate = useNavigate();
   const [isSignUp, setIsSignUp] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
@@ -28,6 +30,7 @@ export default function AuthForm() {
         const result = await signUp(formData);
         if (result.token) {
           localStorage.setItem('token', result.token);
+          navigate('/projects');
         }
         alert('Account created successfully!');
       } else {
@@ -37,6 +40,7 @@ export default function AuthForm() {
         });
         if (result.token) {
           localStorage.setItem('token', result.token);
+          navigate('/projects');
         }
         alert('Logged in successfully!');
       }
