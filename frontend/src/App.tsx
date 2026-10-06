@@ -1,9 +1,15 @@
-import { Route, Routes } from "react-router-dom";
+import { Navigate, Outlet, Route, Routes } from "react-router-dom";
 import NavBar from "./components/NavBar";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
 import MyProjectsPage from "./pages/MyProjectsPage";
 import ProjectDetailPage from "./pages/ProjectDetailPage";
+import { useAuth } from "./hooks/useAuth";
+
+function RequireAuth() {
+  const { isAuthenticated } = useAuth();
+  return isAuthenticated ? <Outlet /> : <Navigate to="/login" replace />;
+}
 
 function App() {
 
@@ -19,9 +25,10 @@ function App() {
 
         <Route path="/login" element={<LoginPage/>} />
 
-        <Route path="/projects" element={<MyProjectsPage/>} />
-
-        <Route path="/projects/:projectId" element={<ProjectDetailPage/>} />
+        <Route element={<RequireAuth />}>
+          <Route path="/projects" element={<MyProjectsPage/>} />
+          <Route path="/projects/:projectId" element={<ProjectDetailPage/>} />
+        </Route>
       </Routes>
     </div>
   )

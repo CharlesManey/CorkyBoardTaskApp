@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { login, signUp } from '../services/auth';
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
 
 export default function AuthForm() {
   const navigate = useNavigate();
+  const { setSession } = useAuth();
   const [isSignUp, setIsSignUp] = useState(false);
   const [formData, setFormData] = useState({
     username: '',
@@ -29,7 +31,7 @@ export default function AuthForm() {
       if (isSignUp) {
         const result = await signUp(formData);
         if (result.token) {
-          localStorage.setItem('token', result.token);
+          setSession(result.token);
           navigate('/projects');
         }
         alert('Account created successfully!');
@@ -39,13 +41,13 @@ export default function AuthForm() {
           password: formData.password,
         });
         if (result.token) {
-          localStorage.setItem('token', result.token);
+          setSession(result.token);
           navigate('/projects');
         }
         alert('Logged in successfully!');
       }
-    } catch (err: any) {
-      setError(err.message || 'An error occurred');
+    } catch (err: unknown) {
+      setError(err instanceof Error ? err.message : 'An error occurred');
     } finally {
       setLoading(false);
     }
