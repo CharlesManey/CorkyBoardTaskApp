@@ -20,7 +20,7 @@ function NavBar() {
       {isAuthenticated && (
       <NavLink
       to="/projects"
-      className={({isActive}) => isActive ? 'text-amber-400 text-shadow-black text-shadow-md' : 'text-amber-100 hover:text-lg text-shadow-black text-shadow-sm'}
+      className={({isActive}) => isActive ? 'text-amber-400 text-shadow-black text-shadow-md' : 'text-amber-100 hover:text-lg text-shadow-black text-shadow-md'}
       >Projects</NavLink>
       )}
       {isAuthenticated ? 
@@ -36,7 +36,7 @@ function NavBar() {
       onClick={onLogout}>Logout</button>
       : <NavLink 
       to='/login'
-      className={({isActive}) => isActive ? 'text-amber-400' : 'text-amber-100 hover:text-lg'}
+      className={({isActive}) => isActive ? 'text-amber-400 text-shadow-black text-shadow-md' : 'text-amber-100 hover:text-lg text-shadow-black text-shadow-md'}
       >Login</NavLink>}
     </nav>
   )

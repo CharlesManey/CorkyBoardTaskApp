@@ -51,19 +51,32 @@ function ProjectDetailPage() {
   if (error) return <div style={{ color: 'red' }}>Error: {error}</div>;
 
   return (
-    <div className='p-5'>
-      <Link className='text-amber-100 text-shadow-black text-shadow-md text-lg
+    <div className=''>
+      <div className='grid grid-cols-5 items-center w-full px-5'>
+      <Link className='text-amber-100 text-shadow-black text-shadow-md text-lg justify-self-center
       hover:drop-shadow-sm 
     hover:drop-shadow-amber-900 
     hover:text-amber-600
       ' to="/projects">← Back to Projects</Link>
 
-      <h2 className='text-amber-100 text-shadow-black text-shadow-md text-4xl pb-10 font-semibold text-center'>{projectName}</h2>
+      <button className='border rounded-md border-black px-2 p-0.5 w-fit justify-self-center
+      text-amber-100
+      bg-green-900
+      drop-shadow-md
+      drop-shadow-black
+      text-shadow-black text-shadow-md
+      hover:drop-shadow-sm 
+      hover:drop-shadow-amber-600 
+      hover:text-amber-400
+      '>Create Task +</button>
 
+      <h2 className='text-amber-100 text-shadow-black text-shadow-md text-4xl pt-5 pb-10 font-semibold text-center'>{projectName}</h2>
+
+      </div>
       {tasks.length === 0 ? (
         <p>No tasks found for this project yet.</p>
       ) : (
-        <div className="flex flex-wrap gap-5 text-amber-800">
+        <div className="flex flex-wrap gap-5 justify-center text-amber-800">
           {tasks.map((task) => (
             <div
               key={task._id}
