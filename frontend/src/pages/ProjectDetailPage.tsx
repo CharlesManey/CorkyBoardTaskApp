@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
-
+import taskBG from '../assets/TaskBG.jpg';
 interface Task {
   _id: string;
   title: string;
@@ -51,29 +51,51 @@ function ProjectDetailPage() {
   if (error) return <div style={{ color: 'red' }}>Error: {error}</div>;
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <Link to="/projects">← Back to Projects</Link>
-      <h2>{projectName}</h2>
+    <div className='p-5'>
+      <Link className='text-amber-100 text-shadow-black text-shadow-md text-lg
+      hover:drop-shadow-sm 
+    hover:drop-shadow-amber-900 
+    hover:text-amber-600
+      ' to="/projects">← Back to Projects</Link>
+
+      <h2 className='text-amber-100 text-shadow-black text-shadow-md text-4xl pb-10 font-semibold text-center'>{projectName}</h2>
 
       {tasks.length === 0 ? (
         <p>No tasks found for this project yet.</p>
       ) : (
-        <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', marginTop: '1rem' }}>
+        <div className="flex flex-wrap gap-5 text-amber-800">
           {tasks.map((task) => (
             <div
               key={task._id}
-              style={{
-                border: '1px solid black',
-                padding: '1rem',
-                borderRadius: '8px',
-                backgroundColor: '#fefabc', // Corkboard note styling
-                width: '200px',
-                boxShadow: '2px 3px 2px black',
-              }}
+              style={{backgroundImage: `url(${taskBG})`}}
+              className="bg-cover bg-center w-50 h-50
+              border p-5 pb-2 px-2 drop-shadow-black drop-shadow-md
+              flex flex-col text-shadow-black text-shadow-xs
+              "
             >
-              <h3>{task.title}</h3>
-              {task.description && <p>{task.description}</p>}
-              {task.status && <small>Status: {task.status}</small>}
+              <h3 className='text-lg'>{task.title}</h3>
+              <hr />
+              {task.description && <p className='text-sm wrap-break-word line-clamp-3'>{task.description}</p>}
+              {task.status && <small className='mt-auto pb-1'>Status: {task.status}</small>}
+              <div className='flex justify-between font-semibold'>
+              <button className='
+            text-shadow-black text-shadow-xs
+              hover:text-lg
+              hover:text-shadow-sm
+              '>
+                {task.status === 'To Do' ? '➡' : task.status === 'In Progress' ? '✅' : '↩️'} 
+              </button>
+              <button className='
+              text-shadow-black text-shadow-xs
+              hover:text-lg
+              hover:text-shadow-sm
+              '>✎</button>
+              <button className='
+              text-shadow-black text-shadow-xs
+              hover:text-lg
+              hover:text-shadow-sm
+              '>🗑️</button>
+            </div>
             </div>
           ))}
         </div>

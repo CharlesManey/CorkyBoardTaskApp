@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import corkBG from '../assets/CorkBoard.jpg';
 
 function MyProjectsPage() {
 
@@ -40,24 +41,51 @@ function MyProjectsPage() {
   if (error) return <div style={{ color: 'red' }}>Error: {error}</div>;
 
   return (
-    <div style={{ padding: '2rem' }}>
-      <h2>My Projects</h2>
-      <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+    <div className='text-amber-100 text-shadow-md text-shadow-black flex flex-col items-center'>
+      <h2 className='text-4xl pt-5 pb-10 font-semibold text-center'>My Projects</h2>
+      <div className='flex flex-wrap gap-5 justify-center'>
         {projects.map((project: any) => (
           <div 
-            key={project._id} 
-            style={{ border: '1px solid #ccc', padding: '1rem', borderRadius: '8px', minWidth: '200px' }}
+            key={project._id}
+            style={{backgroundImage: `url(${corkBG})`}}
+            className="bg-cover bg-center
+            border-4 border-[#C0C0C0] p-5 rounded-md w-11/12 sm:w-100 drop-shadow-black drop-shadow-md
+            hover:border-amber-400"
           >
-            <h3>
+            <h3 className='text-3xl pb-3 font-semibold'>
               {/* Navigates to /projects/<projectId> */}
               <Link 
-                to={`/projects/${project._id}`} style={{ textDecoration: 'none', color: '#0070f3' }}
+                className='
+                hover:drop-shadow-sm 
+              hover:drop-shadow-amber-900 
+              hover:text-amber-600'
+                to={`/projects/${project._id}`}
                 state={{ name: project.name }}
               >
                 {project.name}
               </Link>
             </h3>
-            {project.description && <p>{project.description}</p>}
+            {project.description && <p className='pb-3'>{project.description}</p>}
+            <div className='flex justify-between pt-2 font-semibold'>
+              <button className='border rounded-lg border-black px-2 p-0.5
+              bg-amber-900
+              drop-shadow-md
+              drop-shadow-black
+              text-shadow-black text-shadow-md
+              hover:drop-shadow-sm 
+              hover:drop-shadow-amber-600 
+              hover:text-amber-400
+              '>Edit ✎</button>
+              <button className='border rounded-md border-black px-2 p-0.5
+              bg-amber-900
+              drop-shadow-md
+              drop-shadow-black
+              text-shadow-black text-shadow-md
+              hover:drop-shadow-sm 
+              hover:drop-shadow-amber-600 
+              hover:text-amber-400
+              '>Delete 🗑️</button>
+            </div>
           </div>
         ))}
       </div>

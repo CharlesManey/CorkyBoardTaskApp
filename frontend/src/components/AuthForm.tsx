@@ -54,15 +54,15 @@ export default function AuthForm() {
   };
 
   return (
-    <div style={{ maxWidth: '400px', margin: '2rem auto', padding: '1.5rem', border: '1px solid black', borderRadius: '8px', backgroundColor: 'white', boxShadow: '2px 3px 2px black' }}>
-      <h2>{isSignUp ? 'Create an Account' : 'Log In'}</h2>
+    <div className='max-w-100 my-8 mx-auto p-6 border border-black rounded-lg bg-white shadow-lg shadow-black'>
+      <h2 className='text-2xl font-semibold mb-4'>{isSignUp ? 'Create an Account' : 'Log In'}</h2>
 
-      {error && <div style={{ color: 'red', marginBottom: '1rem' }}>{error}</div>}
+      {error && <div className='text-red-500 mb-4'>{error}</div>}
 
-      <form onSubmit={handleSubmit}>
+      <form className='flex flex-col' onSubmit={handleSubmit}>
         {isSignUp && (
-          <div style={{ marginBottom: '1rem' }}>
-            <label htmlFor="username">Username</label>
+          <div className='mb-4'>
+            <label className='text-xl' htmlFor="username">Username</label>
             <input
               type="text"
               id="username"
@@ -70,13 +70,13 @@ export default function AuthForm() {
               value={formData.username}
               onChange={handleChange}
               required
-              style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
+              className='w-full p-2 mt-1 border rounded-sm shadow-black shadow-sm hover:bg-amber-200 focus:outline-amber-400 focus:shadow-amber-700 focus:shadow-lg focus:text-lg'
             />
           </div>
         )}
 
-        <div style={{ marginBottom: '1rem' }}>
-          <label htmlFor="email">Email</label>
+        <div className='mb-4'>
+          <label className='text-xl' htmlFor="email">Email</label>
           <input
             type="email"
             id="email"
@@ -84,12 +84,12 @@ export default function AuthForm() {
             value={formData.email}
             onChange={handleChange}
             required
-            style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
+            className='w-full p-2 mt-1 border rounded-sm shadow-black shadow-sm hover:bg-amber-200 focus:outline-amber-400 focus:shadow-amber-700 focus:shadow-lg focus:text-lg'
           />
         </div>
 
-        <div style={{ marginBottom: '1rem' }}>
-          <label htmlFor="password">Password</label>
+        <div className='mb-4'>
+          <label className='text-xl' htmlFor="password">Password</label>
           <input
             type="password"
             id="password"
@@ -97,22 +97,22 @@ export default function AuthForm() {
             value={formData.password}
             onChange={handleChange}
             required
-            style={{ width: '100%', padding: '0.5rem', marginTop: '0.25rem' }}
+            className='w-full p-2 mt-1 border rounded-sm shadow-black shadow-sm hover:bg-amber-200  focus:outline-amber-400 focus:shadow-amber-700 focus:shadow-lg focus:text-lg'
           />
         </div>
 
-        <button type="submit" disabled={loading} style={{ width: '100%', padding: '0.5rem', cursor: 'pointer' }}>
+        <button type="submit" disabled={loading} className='w-1/2 p-2 cursor-pointer border rounded-lg self-center shadow-black shadow-md hover:bg-amber-200 text-lg hover:text-xl'>
           {loading ? 'Processing...' : isSignUp ? 'Sign Up' : 'Log In'}
         </button>
       </form>
 
-      <div style={{ marginTop: '1rem', textAlign: 'center' }}>
+      <div className='mt-4 text-center'>
         <p>
           {isSignUp ? 'Already have an account?' : "Don't have an account?"}{' '}
           <button
             type="button"
             onClick={() => setIsSignUp(!isSignUp)}
-            style={{ background: 'none', border: 'none', color: 'blue', cursor: 'pointer', textDecoration: 'underline' }}
+            className='bg-none border-none text-blue-700 cursor-pointer underline'
           >
             {isSignUp ? 'Log In' : 'Sign Up'}
           </button>
