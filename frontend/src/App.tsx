@@ -22,7 +22,7 @@ function App() {
       className="bg-cover bg-center bg-fixed min-h-screen w-full">
       <header 
       style={{backgroundImage: `url(${headerBG})`}}
-      className="bg-[url('src/assets/OakHeaderBg.jpg')] bg-cover bg-center w-full min-w-screen sticky top-0 z-50 shadow-sm shadow-black">
+      className="bg-cover bg-center w-full min-w-screen sticky top-0 z-50 shadow-sm shadow-black">
         <h1 className="text-5xl font-bold text-amber-100 mb-3 pt-2 text-center text-shadow-black text-shadow-md">Corky Board</h1>
         <NavBar/>
       </header>
