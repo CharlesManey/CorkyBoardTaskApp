@@ -21,7 +21,7 @@ async function createTask(req, res) {
       user: req.user._id,
     });
 
-    res.status(201).json({ message: "Task created successfully!" });
+    res.status(201).json(newTask);
   } catch (error) {
     console.error(error);
     res.status(400).json({ message: error.message });
@@ -65,7 +65,7 @@ async function updateTask(req, res) {
 
     const updatedTask = await Task.findByIdAndUpdate( taskId, req.body, { new: true, runValidators: true });
 
-    res.status(200).json({ message: "Task updated successfully!" });
+    res.status(200).json(updatedTask);
   } catch (error) {
     console.error(error);
     res.status(400).json({ message: error.message });
