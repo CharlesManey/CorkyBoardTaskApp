@@ -167,8 +167,16 @@ function ProjectDetailPage() {
     }
   };
 
-  if (loading) return <div>Loading tasks...</div>;
-  if (error) return <div style={{ color: 'red' }}>Error: {error}</div>;
+  if (loading) return <div className='
+  flex justify-center items-center min-h-[60vh]
+text-amber-100 text-3xl
+text-shadow-black text-shadow-md
+  '>Loading tasks...</div>;
+  if (error) return <div className='
+  flex justify-center items-center min-h-[60vh]
+text-red-600 text-3xl
+text-shadow-black text-shadow-md
+  '>Error: {error}</div>;
 
   return (
     <div className=''>
