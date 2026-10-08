@@ -9,11 +9,11 @@ interface Project {
 }
 
 function MyProjectsPage() {
-  // State
+  // States
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error , setError] = useState<string | null>(null);
-  // Modal State
+  // Modal States
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [editingProject, setEditingProject] = useState<Project | null>(null);
   const [formData, setFormData] = useState<{ name: string; description: string }>({ name: '', description: '' });
@@ -21,7 +21,7 @@ function MyProjectsPage() {
   const getAuthHeaders = (): Record<string, string> => ({
     'Content-Type': 'application/json',
     'Authorization': `Bearer ${localStorage.getItem('token')}`,
-  })
+  });
   // Fetch Projects
   useEffect(() => {
     async function fetchProjects() {
@@ -76,6 +76,7 @@ function MyProjectsPage() {
     if (!formData.name.trim()) return;
 
     try {
+      // Edit Project
       if (editingProject) {
         const response = await fetch(`/api/projects/${editingProject._id}`, {
           method: 'PUT',
@@ -90,6 +91,7 @@ function MyProjectsPage() {
         prev.map((p) => (p._id === editingProject._id ? updatedProject : p))
         );
       } else {
+        // Create Project
         const response = await fetch('/api/projects', {
           method: 'POST',
           headers: getAuthHeaders(),
@@ -108,6 +110,7 @@ function MyProjectsPage() {
       alert(message);
     }
   };
+
   // Delete Project
   const handleDeleteProject = async (projectId: string) => {
     if (!window.confirm("Are you sure you want to delete this project?")) return;
@@ -132,6 +135,14 @@ function MyProjectsPage() {
   return (
     <div className='text-amber-100 text-shadow-md text-shadow-black flex flex-col items-center'>
       <div className='grid grid-cols-3 items-center w-full'>
+        <Link className='text-amber-100 text-shadow-black text-shadow-md text-lg justify-self-center
+        hover:drop-shadow-sm 
+      hover:drop-shadow-amber-900 
+      hover:text-amber-600' 
+        to="/">← Back to Home</Link>
+
+        <h2 className='text-4xl pt-5 pb-10 font-semibold text-center'>My Projects</h2>
+        
         <button onClick={handleOpenCreateModal}
         className='border rounded-md border-black px-2 p-0.5 w-fit justify-self-center
         bg-green-900
@@ -142,10 +153,9 @@ function MyProjectsPage() {
         hover:drop-shadow-amber-600 
         hover:text-amber-400
         '>Create Project +</button>
-        <h2 className='text-4xl pt-5 pb-10 font-semibold text-center'>My Projects</h2>
       </div>
       <div className='flex flex-wrap gap-5 justify-center'>
-        {projects.map((project: any) => (
+        {projects.map((project: Project) => (
           <div 
             key={project._id}
             style={{backgroundImage: `url(${corkBG})`}}
@@ -211,7 +221,7 @@ function MyProjectsPage() {
                     setFormData({ ...formData, name: e.target.value })
                   }
                   className="w-full p-2 rounded bg-amber-900/50 border border-amber-700 text-amber-100 focus:outline-none focus:border-amber-400"
-                  placeholder="e.g. Portfolio Website"
+                  placeholder="Enter a Project Name..."
                 />
               </div>
 
