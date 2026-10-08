@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
 import taskBG from '../assets/TaskBG.jpg';
+import { apiUrl } from '../services/api';
 interface Task {
   _id: string;
   title: string;
@@ -31,7 +32,7 @@ function ProjectDetailPage() {
   useEffect(() => {
     async function fetchProjectTasks() {
       try {
-        const response = await fetch(`/api/projects/${projectId}/tasks`, {
+        const response = await fetch(apiUrl(`/api/projects/${projectId}/tasks`), {
           headers: getAuthHeaders(),
         });
 
@@ -89,7 +90,7 @@ function ProjectDetailPage() {
     const taskId = task._id;
 
     try {
-      const response = await fetch(`/api/projects/${projectId}/tasks/${taskId}`, {
+      const response = await fetch(apiUrl(`/api/projects/${projectId}/tasks/${taskId}`), {
         method: 'PUT',
         headers: getAuthHeaders(),
         body: JSON.stringify({ status: nextStatus }),
@@ -115,7 +116,7 @@ function ProjectDetailPage() {
     try {
       // Edit Task
       if (editingTask) {
-        const response = await fetch(`/api/projects/${projectId}/tasks/${editingTask._id}`, {
+        const response = await fetch(apiUrl(`/api/projects/${projectId}/tasks/${editingTask._id}`), {
           method: 'PUT',
           headers: getAuthHeaders(),
           body: JSON.stringify(formData),
@@ -129,7 +130,7 @@ function ProjectDetailPage() {
         );
       } else {
         // Create Task
-        const response = await fetch(`/api/projects/${projectId}/tasks`, {
+        const response = await fetch(apiUrl(`/api/projects/${projectId}/tasks`), {
           method: 'POST',
           headers: getAuthHeaders(),
           body: JSON.stringify(formData),
@@ -153,7 +154,7 @@ function ProjectDetailPage() {
     if (!window.confirm("Are you sure you want to delete this task?")) return;
 
     try {
-      const response = await fetch(`/api/projects/${projectId}/tasks/${taskId}`, {
+      const response = await fetch(apiUrl(`/api/projects/${projectId}/tasks/${taskId}`), {
         method: 'DELETE',
         headers: getAuthHeaders(),
       });

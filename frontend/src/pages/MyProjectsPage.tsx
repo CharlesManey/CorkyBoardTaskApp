@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import corkBG from '../assets/CorkBoard.jpg';
+import { apiUrl } from '../services/api';
 
 interface Project {
   _id: string;
@@ -26,7 +27,7 @@ function MyProjectsPage() {
   useEffect(() => {
     async function fetchProjects() {
       try {
-        const response = await fetch('/api/projects', {
+        const response = await fetch(apiUrl('/api/projects'), {
           method: 'GET',
           headers: getAuthHeaders(),
         });
@@ -78,7 +79,7 @@ function MyProjectsPage() {
     try {
       // Edit Project
       if (editingProject) {
-        const response = await fetch(`/api/projects/${editingProject._id}`, {
+        const response = await fetch(apiUrl(`/api/projects/${editingProject._id}`), {
           method: 'PUT',
           headers: getAuthHeaders(),
           body: JSON.stringify(formData),
@@ -92,7 +93,7 @@ function MyProjectsPage() {
         );
       } else {
         // Create Project
-        const response = await fetch('/api/projects', {
+        const response = await fetch(apiUrl('/api/projects'), {
           method: 'POST',
           headers: getAuthHeaders(),
           body: JSON.stringify(formData),
@@ -116,7 +117,7 @@ function MyProjectsPage() {
     if (!window.confirm("Are you sure you want to delete this project?")) return;
 
     try {
-      const response = await fetch(`/api/projects/${projectId}`, {
+      const response = await fetch(apiUrl(`/api/projects/${projectId}`), {
         method: 'DELETE',
         headers: getAuthHeaders(),
       });
