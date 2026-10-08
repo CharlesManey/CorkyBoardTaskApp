@@ -170,12 +170,12 @@ function ProjectDetailPage() {
   if (loading) return <div className='
   flex justify-center items-center min-h-[60vh]
 text-amber-100 text-3xl
-text-shadow-black text-shadow-md
+text-shadow-black text-shadow-lg
   '>Loading tasks...</div>;
   if (error) return <div className='
   flex justify-center items-center min-h-[60vh]
-text-red-600 text-3xl
-text-shadow-black text-shadow-md
+text-red-500 text-3xl 
+text-shadow-black text-shadow-lg
   '>Error: {error}</div>;
 
   return (
@@ -200,14 +200,12 @@ text-shadow-black text-shadow-md
       hover:drop-shadow-amber-600 
       hover:text-amber-400
       '>Create Task +</button>
-
-
       </div>
       {tasks.length === 0 ? (
         <p className='
         flex justify-center items-center min-h-[60vh]
         text-amber-100 text-3xl
-        text-shadow-black text-shadow-md
+        text-shadow-black text-shadow-lg
         '>No tasks found for this project yet...</p>
       ) : (
         <div className="flex flex-wrap gap-5 justify-center text-amber-800">

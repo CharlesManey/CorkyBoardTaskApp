@@ -130,8 +130,16 @@ function MyProjectsPage() {
     }
   };
 
-  if (loading) return <div>Loading projects...</div>;
-  if (error) return <div style={{ color: 'red' }}>Error: {error}</div>;
+  if (loading) return <div className='
+  flex justify-center items-center min-h-[60vh]
+text-amber-100 text-3xl
+text-shadow-black text-shadow-lg
+  '>Loading projects...</div>;
+  if (error) return <div className='
+  flex justify-center items-center min-h-[60vh]
+text-red-500 text-3xl 
+text-shadow-black text-shadow-lg
+  '>Error: {error}</div>;
 
   return (
     <div className='text-amber-100 text-shadow-md text-shadow-black flex flex-col items-center'>
@@ -143,7 +151,7 @@ function MyProjectsPage() {
         to="/">← Back to Home</Link>
 
         <h2 className='text-4xl pt-5 pb-10 font-semibold text-center'>My Projects</h2>
-        
+
         <button onClick={handleOpenCreateModal}
         className='border rounded-md border-black px-2 p-0.5 w-fit justify-self-center
         bg-green-900
@@ -155,7 +163,13 @@ function MyProjectsPage() {
         hover:text-amber-400
         '>Create Project +</button>
       </div>
-      <div className='flex flex-wrap gap-5 justify-center'>
+      {projects.length === 0 ? (
+        <p className='
+        flex justify-center items-center min-h-[60vh]
+        text-amber-100 text-3xl
+        text-shadow-black text-shadow-lg
+        '>Workspace is currently empty...</p>
+      ) : (<div className='flex flex-wrap gap-5 justify-center'>
         {projects.map((project: Project) => (
           <div 
             key={project._id}
@@ -203,6 +217,7 @@ function MyProjectsPage() {
           </div>
         ))}
       </div>
+      )}
       {/* Modal Popup */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs">
