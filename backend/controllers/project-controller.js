@@ -15,7 +15,7 @@ async function createProject(req, res) {
       ...req.body,
       user: req.user._id,
     });
-    res.status(201).json({ message: "Project created successfully!" });
+    res.status(201).json(newProject);
   } catch (error) {
     console.error(error);
     res.status(400).json({ message: error.message });
@@ -80,8 +80,11 @@ async function updateProject(req, res) {
       return res.status(403).json({ message: "Forbidden: You do not own this project." });
     }
 
-    const updatedProject = await Project.findByIdAndUpdate( projectId, req.body, { new: true, runValidators: true });
-    res.status(200).json({ message: "Project updated successfully!" });
+    const updatedProject = await Project.findByIdAndUpdate(projectId, req.body, {
+      new: true,
+      runValidators: true,
+    });
+    res.status(200).json(updatedProject);
   } catch (error) {
     console.error(error);
     res.status(400).json({ message: error.message });

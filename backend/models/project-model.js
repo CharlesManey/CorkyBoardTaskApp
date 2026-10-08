@@ -10,7 +10,7 @@ const projectSchema = mongoose.Schema({
   },
   description: {
     type: String,
-    required: [true, "Project description is required."],
+    default: "",
     trim: true,
   },
   user: {
