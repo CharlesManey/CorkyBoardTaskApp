@@ -163,7 +163,13 @@ text-shadow-black text-shadow-lg
         hover:text-amber-400
         '>Create Project +</button>
       </div>
-      <div className='flex flex-wrap gap-5 justify-center'>
+      {projects.length === 0 ? (
+        <p className='
+        flex justify-center items-center min-h-[60vh]
+        text-amber-100 text-3xl
+        text-shadow-black text-shadow-lg
+        '>Workspace is currently empty...</p>
+      ) : ( <div className='flex flex-wrap gap-5 justify-center'>
         {projects.map((project: Project) => (
           <div 
             key={project._id}
@@ -211,6 +217,7 @@ text-shadow-black text-shadow-lg
           </div>
         ))}
       </div>
+      )}
       {/* Modal Popup */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-xs">
