@@ -7,6 +7,12 @@ This application was built as a class project.
 ## Original Idea Figma
 ![Figma Design](image.png)
 
+## Screen Shots
+![Landing Page](image-1.png)
+![Login or Sign up](image-2.png)
+![User project page](image-3.png)
+![Project tasks page](image-4.png)
+
 ## Features
 
 - Create an account and log in with email and password.
