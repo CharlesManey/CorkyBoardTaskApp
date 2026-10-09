@@ -4,6 +4,9 @@ CorkyBoard is a full-stack task management app for organizing work into projects
 
 This application was built as a class project.
 
+## Original Idea Figma
+![Figma Design](image.png)
+
 ## Features
 
 - Create an account and log in with email and password.
