@@ -176,7 +176,7 @@ text-shadow-black text-shadow-lg
             style={{backgroundImage: `url(${corkBG})`}}
             className="bg-cover bg-center
             border-4 border-[#C0C0C0] p-5 rounded-md w-11/12 sm:w-100 drop-shadow-black drop-shadow-md
-            hover:border-amber-400"
+            hover:border-amber-400 flex flex-col justify-between"
           >
             <h3 className='text-3xl pb-3 font-semibold'>
               {/* Navigates to /projects/<projectId> */}
@@ -194,7 +194,8 @@ text-shadow-black text-shadow-lg
             {project.description && <p className='pb-3'>{project.description}</p>}
             <div className='flex justify-between pt-2 font-semibold'>
               <button onClick={() => handleOpenEditModal(project)}
-              className='border rounded-lg border-black px-2 p-0.5
+              className='
+              border rounded-lg border-black px-2 p-0.5
               bg-amber-900
               drop-shadow-md
               drop-shadow-black
@@ -204,7 +205,8 @@ text-shadow-black text-shadow-lg
               hover:text-amber-400
               '>Edit ✎</button>
               <button onClick={() => handleDeleteProject(project._id)}
-              className='border rounded-md border-black px-2 p-0.5
+              className='
+              border rounded-md border-black px-2 p-0.5
               bg-amber-900
               drop-shadow-md
               drop-shadow-black
